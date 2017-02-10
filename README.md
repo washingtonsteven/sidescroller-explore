@@ -36,7 +36,7 @@ If you want to run this (for whatever reason, this whole repo is just me messing
     - Phaser only loads Tiled JSON if you are [using spritesheets](https://phaser.io/examples/v2/loader/load-tilemap-json), not collections on images
   - See below for if gid is not found in tileset
 
-```
+```javascript
     var FLIP_H = 0x80000000; //draw a horizontal line, and flip over that
     var FLIP_V = 0x40000000; //draw a vertical line, and flip over that
     var FLIP_D = 0x20000000; //draw a y=x (positive diagonal) line, and flip over that
