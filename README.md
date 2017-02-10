@@ -26,6 +26,34 @@ If you want to run this (for whatever reason, this whole repo is just me messing
 
 ### Other
 - Plugin for slopes with Arcade Physics: https://github.com/hexus/phaser-arcade-slopes
+- Tiled json format, esp for flipped tiles:http://doc.mapeditor.org/reference/tmx-map-format/#tile-flipping
+  - gid in `data` is greater than the gid in `tileset` by the `firstgid` in the tileset (which is `1`, since we are only using 1 tileset)
+    - i.e. if you see `87` in the `data` array, the gid is `86` in tileset 1.
+    - How would we deal with multiple tilesets like this?
+      - Easy answer, you don't. You use gd spritesheets instead of collections (see point below)
+  - In this case, use only 1 tileset. Only use multiple if you are using spritesheets
+    - Phaser only loads Tiled JSON if you are [using spritesheets](https://phaser.io/examples/v2/loader/load-tilemap-json), not collections on images
+  - See below for if gid is not found in tileset
+
+
+    var FLIP_H = 0x80000000; //draw a horizontal line, and flip over that
+    var FLIP_V = 0x40000000; //draw a vertical line, and flip over that
+    var FLIP_D = 0x20000000; //draw a y=x (positive diagonal) line, and flip over that
+    var hflip = gid & FLIP_H; //these will return some positive number if flipped in that way
+    var vflip = gid & FLIP_V; //if not flipped, will be 0
+    var dflip = gid & FLIP_D;
+    var orig_gid = gid & ~(FLIP_H | FLIP_V | FLIP_D); //~inverts the bits, and then bitwise AND to the gid in the data
+    if (dflip) {
+      //rotate 90
+      if (vflip) {
+        //rotate 270 instead
+      }
+    }
+
+    if (hflip) {
+      //rotate 180
+    }
+
 
 ## Credits
 Uses [Phaser](https://github.com/photonstorm/phaser) by Photon Storm, which is released under the [MIT License](https://opensource.org/licenses/MIT)

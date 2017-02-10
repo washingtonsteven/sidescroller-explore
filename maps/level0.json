@@ -14,92 +14,68 @@
         }, 
         {
          "draworder":"topdown",
-         "height":7,
+         "height":0,
          "name":"enemies",
          "objects":[
                 {
-                 "gid":184,
+                 "gid":174,
                  "height":51,
-                 "id":3,
+                 "id":13,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":51,
-                 "x":565,
+                 "x":577,
+                 "y":273
+                }, 
+                {
+                 "gid":174,
+                 "height":51,
+                 "id":16,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":51,
+                 "x":843,
                  "y":261
                 }, 
                 {
-                 "gid":184,
+                 "gid":174,
                  "height":51,
-                 "id":4,
+                 "id":18,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":51,
-                 "x":765,
-                 "y":255
-                }, 
-                {
-                 "gid":184,
-                 "height":51,
-                 "id":5,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":51,
-                 "x":1105,
-                 "y":403
-                }, 
-                {
-                 "gid":184,
-                 "height":51,
-                 "id":6,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":51,
-                 "x":1405,
-                 "y":271
-                }, 
-                {
-                 "gid":184,
-                 "height":51,
-                 "id":7,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":51,
-                 "x":1679,
-                 "y":199
-                }, 
-                {
-                 "gid":184,
-                 "height":51,
-                 "id":8,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":51,
-                 "x":2103,
+                 "x":1125,
                  "y":399
                 }, 
                 {
-                 "gid":184,
+                 "gid":174,
                  "height":51,
-                 "id":9,
+                 "id":20,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":51,
-                 "x":2333,
-                 "y":273
+                 "x":1607,
+                 "y":193
+                }, 
+                {
+                 "gid":174,
+                 "height":51,
+                 "id":21,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":51,
+                 "x":2335,
+                 "y":277
                 }],
          "opacity":1,
          "properties":
@@ -114,12 +90,12 @@
             },
          "type":"objectgroup",
          "visible":true,
-         "width":44,
+         "width":0,
          "x":0,
          "y":0
         }, 
         {
-         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 188, 188, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 188, 188, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 188, 0, 0, 188, 0, 188, 188, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 188, 188, 0, 0, 0, 0, 0, 188, 0, 0, 0, 0, 188, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 188, 0, 0, 0, 0, 0, 0, 0, 0, 188, 188, 188, 188, 0, 0, 0, 0, 0, 0, 0, 0, 188, 188, 188, 188, 0, 0, 0, 0, 188, 188, 0, 0, 0, 0, 0, 0, 0, 0, 0, 188, 0, 0, 0, 188, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 175, 175, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 175, 175, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 175, 0, 0, 175, 0, 175, 175, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 175, 175, 0, 0, 0, 0, 0, 175, 0, 0, 0, 0, 175, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 175, 0, 0, 0, 0, 0, 0, 0, 0, 175, 175, 175, 175, 0, 0, 0, 0, 0, 0, 0, 0, 175, 175, 175, 175, 0, 0, 0, 0, 175, 175, 0, 0, 0, 0, 0, 0, 0, 0, 0, 175, 0, 0, 0, 175, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
          "height":7,
          "name":"coins",
          "opacity":1,
@@ -158,20 +134,20 @@
         }, 
         {
          "draworder":"topdown",
-         "height":7,
+         "height":0,
          "name":"player",
          "objects":[
                 {
-                 "gid":177,
+                 "gid":173,
                  "height":94,
-                 "id":1,
+                 "id":12,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":70,
-                 "x":315,
-                 "y":303
+                 "x":313,
+                 "y":329
                 }],
          "opacity":1,
          "properties":
@@ -186,11 +162,11 @@
             },
          "type":"objectgroup",
          "visible":true,
-         "width":44,
+         "width":0,
          "x":0,
          "y":0
         }],
- "nextobjectid":10,
+ "nextobjectid":25,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tileheight":70,
@@ -201,7 +177,7 @@
          "margin":0,
          "name":"tiles",
          "spacing":0,
-         "tilecount":12,
+         "tilecount":15,
          "tileheight":146,
          "tiles":
             {
@@ -216,6 +192,18 @@
              "128":
                 {
                  "image":"..\/img\/platformer_art_pack\/Base pack\/Tiles\/signRight.png"
+                },
+             "172":
+                {
+                 "image":"..\/img\/platformer_art_pack\/Base pack\/Player\/p2_walk\/PNG\/p2_walk01.png"
+                },
+             "173":
+                {
+                 "image":"..\/img\/platformer_art_pack\/Base pack\/Enemies\/blockerMad.png"
+                },
+             "174":
+                {
+                 "image":"..\/img\/platformer_art_pack\/Base pack\/Items\/coinGold.png"
                 },
              "36":
                 {
@@ -252,71 +240,6 @@
              "86":
                 {
                  "image":"..\/img\/platformer_art_pack\/Base pack\/Tiles\/hill_small.png"
-                }
-            },
-         "tilewidth":70
-        }, 
-        {
-         "columns":0,
-         "firstgid":173,
-         "margin":0,
-         "name":"player",
-         "spacing":0,
-         "tilecount":1,
-         "tileheight":94,
-         "tiles":
-            {
-             "4":
-                {
-                 "image":"..\/img\/platformer_art_pack\/Base pack\/Player\/p2_walk\/PNG\/p2_walk05.png"
-                }
-            },
-         "tilewidth":70
-        }, 
-        {
-         "columns":0,
-         "firstgid":184,
-         "margin":0,
-         "name":"enemy",
-         "spacing":0,
-         "tilecount":1,
-         "tileheight":51,
-         "tiles":
-            {
-             "0":
-                {
-                 "image":"..\/img\/platformer_art_pack\/Base pack\/Enemies\/blockerMad.png"
-                }
-            },
-         "tilewidth":51
-        }, 
-        {
-         "columns":0,
-         "firstgid":186,
-         "margin":0,
-         "name":"items",
-         "spacing":0,
-         "tilecount":1,
-         "tileheight":70,
-         "tileproperties":
-            {
-             "2":
-                {
-                 "collectable":true
-                }
-            },
-         "tilepropertytypes":
-            {
-             "2":
-                {
-                 "collectable":"bool"
-                }
-            },
-         "tiles":
-            {
-             "2":
-                {
-                 "image":"..\/img\/platformer_art_pack\/Base pack\/Items\/coinGold.png"
                 }
             },
          "tilewidth":70
