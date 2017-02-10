@@ -26,6 +26,7 @@ If you want to run this (for whatever reason, this whole repo is just me messing
 
 ### Other
 - Plugin for slopes with Arcade Physics: https://github.com/hexus/phaser-arcade-slopes
+- Tiled keyboard shortcuts: https://github.com/bjorn/tiled/wiki/Keyboard-Shortcuts
 - Tiled json format, esp for flipped tiles:http://doc.mapeditor.org/reference/tmx-map-format/#tile-flipping
   - gid in `data` is greater than the gid in `tileset` by the `firstgid` in the tileset (which is `1`, since we are only using 1 tileset)
     - i.e. if you see `87` in the `data` array, the gid is `86` in tileset 1.
