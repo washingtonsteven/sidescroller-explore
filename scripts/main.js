@@ -1,8 +1,31 @@
 var hellophaser = {
   init:function() {
     this.game = new Phaser.Game(275,275);
+    this.game.state.add('boot', this.bootState);
+    this.game.state.add('loading', this.loadingState);
     this.game.state.add('main', this.mainState);
     this.game.state.start('main');
+  },
+  bootState: {
+    init:function(level_file) {
+      this.level_file = level_file;
+    },
+    preload:function() {
+      this.load.text('level0', this.level_file);
+    },
+    create:function() {
+      var level_text = this.game.cache.getText('level0');
+      var level_data = JSON.parse(level_text);
+      this.game.state.start('loading', true, false, level_data);
+    }
+  },
+  loadingState: {
+    init:function(level_data) {
+      this.level_data = level_data;
+    },
+    preload:function() {
+      var tilesets = this.level_data.tilesets;
+    }
   },
   mainState: {
     preload:function() {
