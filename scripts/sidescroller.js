@@ -1,3 +1,13 @@
+/*
+
+
+This whole file was a mistake. Copied from another tutorial, but it shows how to transition between different states.
+
+I mostly did all this to learn about the Phaser.Camera.follow() function. Whoops.
+
+
+*/
+
 var sidescroller = {
   init:function() {
     this.game = new Phaser.Game(746, 420, Phaser.AUTO, '');
