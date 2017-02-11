@@ -25,6 +25,7 @@ var hellophaser = {
     },
     preload:function() {
       var tilesets = this.level_data.tilesets;
+      //parse json to level object here (array of strings)
     }
   },
   mainState: {
