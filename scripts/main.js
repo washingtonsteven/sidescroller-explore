@@ -1,10 +1,10 @@
 var hellophaser = {
   init:function() {
-    this.game = new Phaser.Game(275,275);
+    this.game = new Phaser.Game(800,490);
     this.game.state.add('boot', this.bootState);
     this.game.state.add('loading', this.loadingState);
     this.game.state.add('main', this.mainState);
-    this.game.state.start('main');
+    this.game.state.start('boot', true, false, "maps/level0.json");
   },
   bootState: {
     init:function(level_file) {
@@ -24,66 +24,97 @@ var hellophaser = {
       this.level_data = level_data;
     },
     preload:function() {
-      var tilesets = this.level_data.tilesets;
-      //parse json to level object here (array of strings)
+      this.tiledReader = new TiledReader(this, this.level_data);
+      for (gid in this.tiledReader.assets) {
+        var asset = this.tiledReader.assets[gid];
+        if (asset.image) {
+          this.load.image(gid+"", asset.image);
+        }
+      }
+    },
+    create:function() {
+      this.game.state.start('main', true, false, this.tiledReader);
     }
   },
   mainState: {
-    preload:function() {
-      var game = this.game;
-      game.load.image('player', window.base_img_dir+"/Player/p1_front.png");
-      game.load.image('wall', window.base_img_dir+"/Tiles/castleCenter.png");
-      game.load.image('coin', window.base_img_dir+"/Items/coinGold.png");
-      game.load.image('enemy', window.base_img_dir+"/Enemies/blockerMad.png");
+    init:function(tiledReader) {
+      console.log('main state start: '+tiledReader);
+      this.tiledReader = tiledReader;
     },
     create:function() {
       var game = this.game;
-      game.stage.backgroundColor = "#3598db";
+      game.stage.backgroundColor = this.tiledReader.level_map.backgroundColor || "#000";
       //this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
       this.scale.pageAlignHorizontally = true;
       this.scale.pageAlignVertically = true;
       this.scale.refresh();
       game.physics.startSystem(Phaser.Physics.ARCADE);
       game.world.enableBody = true;
-      this.game.world.setBounds(0, 0, 1600, 275);
+      this.game.world.setBounds(0, 0, 3500, 490);
+
+      var td = new TiledDisplay(this, this.tiledReader);
+      td.displayLayers();
+      this.playerSprite = null;
+      if (this.player && this.player.children && this.player.children.length > 0) {
+        this.playerSprite = this.player.children[0];
+      } else {
+        throw new Error("There is no player layer!");
+      }
 
       this.cursor = game.input.keyboard.createCursorKeys();
-      this.player = game.add.sprite(70, 100, 'player');
-      this.player.scale.setTo(0.5, 0.5);
-      this.player.anchor.setTo(0.5, 0.5);
-      this.player.body.gravity.y = 600;
-      game.camera.follow(this.player, undefined, 0.05, 0.05);
+      this.playerSprite.body.gravity.y = 1000;
+      game.camera.follow(this.playerSprite, undefined, 0.05, 0.05);
 
-      this.walls = game.add.group();
-      this.coins = game.add.group();
-      this.enemies = game.add.group();
-
-      this.level_controller.displayLevel(this, 0);
+      if (this.enemies && this.collision) {
+        this.enemies.forEachExists(function(enemy){
+          enemy.body.gravity.y = 1000;
+        });
+      }
     },
     update:function() {
       var game = this.game;
 
       if (this.cursor.left.isDown) {
-        this.player.body.velocity.x = -200;
+        this.playerSprite.body.velocity.x = -400;
       } else if (this.cursor.right.isDown) {
-        this.player.body.velocity.x = 200;
+        this.playerSprite.body.velocity.x = 400;
       } else {
-        this.player.body.velocity.x = 0;
+        this.playerSprite.body.velocity.x = 0;
       }
 
-      game.physics.arcade.collide(this.player, this.walls);
-      game.physics.arcade.overlap(this.player, this.coins, this.takeCoin, null, this);
-      game.physics.arcade.overlap(this.player, this.enemies, this.restart, null, this);
+      if (this.playerSprite) {
 
-      if (this.cursor.up.isDown && (this.player.body.onFloor() || this.player.body.touching.down)) {
-        this.player.body.velocity.y = -250;
+        if (this.collision) {
+          game.physics.arcade.collide(this.playerSprite, this.collision);
+        }
+
+        if (this.coins) {
+          game.physics.arcade.overlap(this.playerSprite, this.coins, this.takeCoin, null, this);
+        }
+
+        if (this.enemies) {
+          game.physics.arcade.overlap(this.playerSprite, this.enemies, this.restart, null, this);
+
+          if (this.collision) {
+            game.physics.arcade.collide(this.enemies, this.collision);
+          }
+        }
+      }
+
+      // game.physics.arcade.collide(this.player, this.walls);
+      // game.physics.arcade.overlap(this.player, this.coins, this.takeCoin, null, this);
+      // game.physics.arcade.overlap(this.player, this.enemies, this.restart, null, this);
+
+      if (this.cursor.up.isDown && (this.playerSprite.body.onFloor() || this.playerSprite.body.touching.down)) {
+        this.playerSprite.body.velocity.y = -600;
       }
     },
     takeCoin:function(player, coin) {
       coin.kill();
     },
     restart:function() {
-      this.game.state.start('main')
+      console.log("restarting");
+      this.game.state.restart(true, false, this.tiledReader);
     },
     level_controller: {
       displayLevel:function(state, levelIndex) {
@@ -131,3 +162,7 @@ var hellophaser = {
 window.onload = function() {
   hellophaser.init();
 };
+
+function degtorad(angle) {
+  return angle * (Math.PI/180);
+}
