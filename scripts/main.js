@@ -63,6 +63,7 @@ var hellophaser = {
 
       this.cursor = game.input.keyboard.createCursorKeys();
       this.playerSprite.body.gravity.y = 1000;
+      this.playerSprite.scale.setTo(0.75,0.75);
       game.camera.follow(this.playerSprite, undefined, 0.05, 0.05);
 
       if (this.enemies && this.collision) {
@@ -114,6 +115,7 @@ var hellophaser = {
     },
     restart:function() {
       console.log("restarting");
+      this.coins = this.collision = this.player = this.enemies = this.background = null;
       this.game.state.restart(true, false, this.tiledReader);
     },
     level_controller: {

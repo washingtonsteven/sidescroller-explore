@@ -8,6 +8,8 @@ If you want to run this (for whatever reason, this whole repo is just me messing
 ## Notes
 (This section is mostly for me to take notes on ideas, thoughts, or just tricky things about Phaser that I should remember in the future)
 
+Hm, may have to use P2 physics to get better collisions. I know I've done this before...
+
 ## Potential Resources
 (This section is just for me to list links to new resources, art, tutorials, etc., that I should check out in the future and/or have as a reference)
 
