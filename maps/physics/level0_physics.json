@@ -1,0 +1,81 @@
+{ 
+    
+    "grassHalfLeft": [
+        
+        {
+            "density": 2, "friction": 0, "bounce": 0, 
+            "filter": { "categoryBits": 1, "maskBits": 65535 },
+            "shape": [   70, 40  ,  4, 40  ,  0, 36  ,  0, 4  ,  5, 0  ,  70, 0  ]
+        }
+    ]
+    , 
+    "grassHalfMid": [
+        
+        {
+            "density": 2, "friction": 0, "bounce": 0, 
+            "filter": { "categoryBits": 1, "maskBits": 65535 },
+            "shape": [   0, 0  ,  70, 0  ,  70, 40  ,  0, 40  ]
+        }
+    ]
+    , 
+    "grassHalfRight": [
+        
+        {
+            "density": 2, "friction": 0, "bounce": 0, 
+            "filter": { "categoryBits": 1, "maskBits": 65535 },
+            "shape": [   0, 0  ,  67, 1  ,  70, 4  ,  70, 36  ,  66, 40  ,  0, 40  ]
+        }
+    ]
+    , 
+    "p2_walk01": [
+        
+        {
+            "density": 2, "friction": 0, "bounce": 0, 
+            "filter": { "categoryBits": 1, "maskBits": 65535 },
+            "shape": [   58, 59  ,  11, 56  ,  3, 42  ,  3, 26  ,  14, 8  ,  42, 1  ,  61, 12  ,  69, 40  ]
+        } ,
+        {
+            "density": 2, "friction": 0, "bounce": 0, 
+            "filter": { "categoryBits": 1, "maskBits": 65535 },
+            "shape": [   56, 67  ,  42, 90  ,  15, 63  ,  11, 56  ,  58, 59  ]
+        } ,
+        {
+            "density": 2, "friction": 0, "bounce": 0, 
+            "filter": { "categoryBits": 1, "maskBits": 65535 },
+            "shape": [   4, 92  ,  27, 90  ,  42, 90  ,  67, 92  ]
+        } ,
+        {
+            "density": 2, "friction": 0, "bounce": 0, 
+            "filter": { "categoryBits": 1, "maskBits": 65535 },
+            "shape": [   42, 90  ,  27, 90  ,  15, 63  ]
+        }
+    ]
+    , 
+    "blockerMad": [
+        
+        {
+            "density": 2, "friction": 0, "bounce": 0, 
+            "filter": { "categoryBits": 1, "maskBits": 65535 },
+            "shape": [   5, 0  ,  47, 0  ,  51, 5  ,  51, 46  ,  48, 50  ,  5, 51  ,  0, 46  ,  0, 4  ]
+        }
+    ]
+    , 
+    "coinGold": [
+        
+        {
+            "density": 2, "friction": 0, "bounce": 0, 
+            "filter": { "categoryBits": 1, "maskBits": 65535 },
+            "shape": [   24, 21  ,  31, 18  ,  39, 18  ,  46, 51  ,  30, 54  ,  25, 52  ,  18, 44  ,  17, 31  ]
+        } ,
+        {
+            "density": 2, "friction": 0, "bounce": 0, 
+            "filter": { "categoryBits": 1, "maskBits": 65535 },
+            "shape": [   52, 44  ,  46, 51  ,  39, 18  ,  46, 21  ,  53, 32  ]
+        } ,
+        {
+            "density": 2, "friction": 0, "bounce": 0, 
+            "filter": { "categoryBits": 1, "maskBits": 65535 },
+            "shape": [   30, 54  ,  46, 51  ,  40, 54  ]
+        }
+    ]
+}

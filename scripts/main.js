@@ -1,6 +1,6 @@
 var hellophaser = {
   init:function() {
-    this.game = new Phaser.Game(1000,490);
+    this.game = new Phaser.Game(800,490);
     this.game.state.add('boot', this.bootState);
     this.game.state.add('loading', this.loadingState);
     this.game.state.add('main', this.mainState);
@@ -31,8 +31,10 @@ var hellophaser = {
           this.load.image(gid+"", asset.image);
         }
       }
+      this.load.json("level0_physics_json", "maps/physics/level0_physics.json");
     },
     create:function() {
+      this.load.physics("level0_physics", null, this.game.cache.getJSON("level0_physics_json"));
       this.game.state.start('main', true, false, this.tiledReader);
     }
   },
@@ -44,11 +46,12 @@ var hellophaser = {
     create:function() {
       var game = this.game;
       game.stage.backgroundColor = this.tiledReader.level_map.backgroundColor || "#000";
-      this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+      //this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
       this.scale.pageAlignHorizontally = true;
       this.scale.pageAlignVertically = true;
       this.scale.refresh();
       game.physics.startSystem(Phaser.Physics.P2JS);
+      game.physics.p2.gravity.y = 1000;
       //game.world.enableBody = true;
       this.game.world.setBounds(0, 0, 3500, 490);
 
@@ -64,8 +67,7 @@ var hellophaser = {
       //game.physics.p2.enable(this.playerSprite, true);
 
       this.cursor = game.input.keyboard.createCursorKeys();
-      this.playerSprite.body.gravity.y = 1000;
-      this.playerSprite.scale.setTo(0.75,0.75);
+      //this.playerSprite.body.gravity.y = 1000;
       game.camera.follow(this.playerSprite, undefined, 0.05, 0.05);
 
       if (this.enemies && this.collision) {
@@ -73,6 +75,25 @@ var hellophaser = {
           enemy.body.gravity.y = 1000;
         });
       }
+
+      if (this.collision) {
+        this.collision.forEach(function(ch){
+          ch.body.static = true;
+        });
+      }
+
+      if (this.coins) {
+        this.coins.forEach(function(ch){
+          ch.body.static = true;
+        })
+      }
+
+      // if (this.background) {
+      //   this.background.forEach(function(ch){
+      //     ch.body.static = true;
+      //     ch.body.collidesWith = [];
+      //   })
+      // }
 
       // if (this.collision) {
       //   this.playerSprite.body.collides(this.collision, function(){}, this);
@@ -90,15 +111,12 @@ var hellophaser = {
        this.lastFrameTime = currTime;
 
       if (this.cursor.left.isDown) {
-        this.playerSprite.body.rotation -= degtorad(270 * deltaTime);
-      } else if (this.cursor.right.isDown) {
-        this.playerSprite.body.rotation += degtorad(270 * deltaTime);
-      }
+        //this.playerSprite.body.rotation -= degtorad(270 * deltaTime);
+        this.playerSprite.body.moveLeft(400);
 
-      if (this.cursor.up.isDown) {
-        this.playerSprite.body.thrust(400);
-      } else if (this.cursor.down.isDown) {
-        this.playerSprite.body.thrust(-400);
+      } else if (this.cursor.right.isDown) {
+        //this.playerSprite.body.rotation += degtorad(270 * deltaTime);
+        this.playerSprite.body.moveRight(400);
       }
 
       if (this.playerSprite) {

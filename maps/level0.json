@@ -168,7 +168,7 @@
         }, 
         {
          "draworder":"topdown",
-         "height":7,
+         "height":0,
          "name":"body_player",
          "objects":[
                 {
@@ -250,7 +250,7 @@
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
-         "width":44,
+         "width":0,
          "x":0,
          "y":0
         }],
@@ -267,6 +267,60 @@
          "spacing":0,
          "tilecount":15,
          "tileheight":146,
+         "tileproperties":
+            {
+             "172":
+                {
+                 "name":"p2_walk01"
+                },
+             "173":
+                {
+                 "name":"blockerMad"
+                },
+             "174":
+                {
+                 "name":"coinGold"
+                },
+             "72":
+                {
+                 "name":"grassHalfLeft"
+                },
+             "73":
+                {
+                 "name":"grassHalfMid"
+                },
+             "74":
+                {
+                 "name":"grassHalfRight"
+                }
+            },
+         "tilepropertytypes":
+            {
+             "172":
+                {
+                 "name":"string"
+                },
+             "173":
+                {
+                 "name":"string"
+                },
+             "174":
+                {
+                 "name":"string"
+                },
+             "72":
+                {
+                 "name":"string"
+                },
+             "73":
+                {
+                 "name":"string"
+                },
+             "74":
+                {
+                 "name":"string"
+                }
+            },
          "tiles":
             {
              "10":

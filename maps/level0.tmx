@@ -8,12 +8,21 @@
    <image width="70" height="70" source="../img/platformer_art_pack/Base pack/Tiles/castleMid.png"/>
   </tile>
   <tile id="72">
+   <properties>
+    <property name="name" value="grassHalfLeft"/>
+   </properties>
    <image width="70" height="70" source="../img/platformer_art_pack/Base pack/Tiles/grassHalfLeft.png"/>
   </tile>
   <tile id="73">
+   <properties>
+    <property name="name" value="grassHalfMid"/>
+   </properties>
    <image width="70" height="70" source="../img/platformer_art_pack/Base pack/Tiles/grassHalfMid.png"/>
   </tile>
   <tile id="74">
+   <properties>
+    <property name="name" value="grassHalfRight"/>
+   </properties>
    <image width="70" height="70" source="../img/platformer_art_pack/Base pack/Tiles/grassHalfRight.png"/>
   </tile>
   <tile id="81">
@@ -38,12 +47,21 @@
    <image width="70" height="70" source="../img/platformer_art_pack/Base pack/Tiles/signRight.png"/>
   </tile>
   <tile id="172">
+   <properties>
+    <property name="name" value="p2_walk01"/>
+   </properties>
    <image width="70" height="94" source="../img/platformer_art_pack/Base pack/Player/p2_walk/PNG/p2_walk01.png"/>
   </tile>
   <tile id="173">
+   <properties>
+    <property name="name" value="blockerMad"/>
+   </properties>
    <image width="51" height="51" source="../img/platformer_art_pack/Base pack/Enemies/blockerMad.png"/>
   </tile>
   <tile id="174">
+   <properties>
+    <property name="name" value="coinGold"/>
+   </properties>
    <image width="70" height="70" source="../img/platformer_art_pack/Base pack/Items/coinGold.png"/>
   </tile>
  </tileset>
