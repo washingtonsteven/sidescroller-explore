@@ -22,6 +22,7 @@ Hm, may have to use P2 physics to get better collisions. I know I've done this b
 
 #### New
 - Platformer Tutorial with Phaser and Tiled: https://gamedevacademy.org/platformer-tutorial-with-phaser-and-tiled/
+- This is exactly what I want, probably branch and "restart" with this, see where it goes: https://phaser.io/examples/v2/p2-physics/tilemap-gravity
 
 #### Old
 - Phaser (2.6.2) API: http://phaser.io/docs/2.6.2/index

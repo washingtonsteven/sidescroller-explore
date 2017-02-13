@@ -1,6 +1,6 @@
 var hellophaser = {
   init:function() {
-    this.game = new Phaser.Game(800,490);
+    this.game = new Phaser.Game(1000,490);
     this.game.state.add('boot', this.bootState);
     this.game.state.add('loading', this.loadingState);
     this.game.state.add('main', this.mainState);
@@ -44,12 +44,12 @@ var hellophaser = {
     create:function() {
       var game = this.game;
       game.stage.backgroundColor = this.tiledReader.level_map.backgroundColor || "#000";
-      //this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+      this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
       this.scale.pageAlignHorizontally = true;
       this.scale.pageAlignVertically = true;
       this.scale.refresh();
-      game.physics.startSystem(Phaser.Physics.ARCADE);
-      game.world.enableBody = true;
+      game.physics.startSystem(Phaser.Physics.P2JS);
+      //game.world.enableBody = true;
       this.game.world.setBounds(0, 0, 3500, 490);
 
       var td = new TiledDisplay(this, this.tiledReader);
@@ -61,6 +61,8 @@ var hellophaser = {
         throw new Error("There is no player layer!");
       }
 
+      //game.physics.p2.enable(this.playerSprite, true);
+
       this.cursor = game.input.keyboard.createCursorKeys();
       this.playerSprite.body.gravity.y = 1000;
       this.playerSprite.scale.setTo(0.75,0.75);
@@ -71,43 +73,82 @@ var hellophaser = {
           enemy.body.gravity.y = 1000;
         });
       }
+
+      // if (this.collision) {
+      //   this.playerSprite.body.collides(this.collision, function(){}, this);
+      // }
     },
     update:function() {
       var game = this.game;
+      if (!this.lastFrameTime) {
+         this.lastFrameTime = Date.now();
+       }
+
+       var currTime = Date.now();
+       var deltaTime = currTime - this.lastFrameTime;
+       deltaTime /= 1000;
+       this.lastFrameTime = currTime;
 
       if (this.cursor.left.isDown) {
-        this.playerSprite.body.velocity.x = -400;
+        this.playerSprite.body.rotation -= degtorad(270 * deltaTime);
       } else if (this.cursor.right.isDown) {
-        this.playerSprite.body.velocity.x = 400;
-      } else {
-        this.playerSprite.body.velocity.x = 0;
+        this.playerSprite.body.rotation += degtorad(270 * deltaTime);
+      }
+
+      if (this.cursor.up.isDown) {
+        this.playerSprite.body.thrust(400);
+      } else if (this.cursor.down.isDown) {
+        this.playerSprite.body.thrust(-400);
       }
 
       if (this.playerSprite) {
 
-        if (this.collision) {
-          game.physics.arcade.collide(this.playerSprite, this.collision);
-        }
-
-        if (this.coins) {
-          game.physics.arcade.overlap(this.playerSprite, this.coins, this.takeCoin, null, this);
-        }
-
-        if (this.enemies) {
-          game.physics.arcade.overlap(this.playerSprite, this.enemies, this.restart, null, this);
-
-          if (this.collision) {
-            game.physics.arcade.collide(this.enemies, this.collision);
-          }
-        }
+        // if (this.collision) {
+        //   game.physics.arcade.collide(this.playerSprite, this.collision);
+        // }
+        //
+        // if (this.coins) {
+        //   game.physics.arcade.overlap(this.playerSprite, this.coins, this.takeCoin, null, this);
+        // }
+        //
+        // if (this.enemies) {
+        //   game.physics.arcade.overlap(this.playerSprite, this.enemies, this.restart, null, this);
+        //
+        //   if (this.collision) {
+        //     game.physics.arcade.collide(this.enemies, this.collision);
+        //   }
+        // }
       }
 
       // game.physics.arcade.collide(this.player, this.walls);
       // game.physics.arcade.overlap(this.player, this.coins, this.takeCoin, null, this);
       // game.physics.arcade.overlap(this.player, this.enemies, this.restart, null, this);
 
-      if (this.cursor.up.isDown && (this.playerSprite.body.onFloor() || this.playerSprite.body.touching.down)) {
-        this.playerSprite.body.velocity.y = -600;
+      // if (this.cursor.up.isDown && (this.playerSprite.body.onFloor() || this.playerSprite.body.touching.down)) {
+      //   this.playerSprite.body.velocity.y = -600;
+      // }
+    },
+    render:function() {
+      var game = this.game;
+      if (this.player) {
+        this.player.forEachAlive(function(member){
+          game.debug.body(member, 'rgba(0,255,0,0.4)');
+        }, this);
+      }
+      if (this.collision) {
+        this.collision.forEachAlive(function(member){
+          game.debug.body(member,'rgba(0,0,255,0.4)');
+        }, this);
+      }
+      if (this.enemies) {
+        this.enemies.forEachAlive(function(member){
+          game.debug.body(member,'rgba(255,0,0,0.4)');
+        }, this);
+      }
+      if (this.coins) {
+        this.coins.forEachAlive(function(member){
+          game.debug.body(member,'rgba(255,0,255,0.4)');
+        }, this);
       }
     },
     takeCoin:function(player, coin) {
@@ -115,7 +156,12 @@ var hellophaser = {
     },
     restart:function() {
       console.log("restarting");
-      this.coins = this.collision = this.player = this.enemies = this.background = null;
+      console.log(this.tiled_groups);
+      for (var g in this.tiled_groups) {
+        console.log("removing "+g);
+        this[g] = null;
+      }
+      this.tiled_groups = null;
       this.game.state.restart(true, false, this.tiledReader);
     },
     level_controller: {

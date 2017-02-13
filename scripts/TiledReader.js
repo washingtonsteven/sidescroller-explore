@@ -60,38 +60,45 @@ TiledReader.prototype = {
         "Reading level: "+layer.name
       );
 
-      for (i = 0; i < layer.height; i++) {
-        for (j = 0; j < layer.width; j++) {
-          var currCell = layer.data[layer.width*i+j];
+      if (layer.type == "tilelayer") {
+        for (i = 0; i < layer.height; i++) {
+          for (j = 0; j < layer.width; j++) {
+            var currCell = layer.data[layer.width*i+j];
 
-          if (!currLayer[i]) currLayer[i] = [];
+            if (!currLayer[i]) currLayer[i] = [];
 
-          var cellData = {
-            gid:currCell,
-            asset:this.getAssetByGid(currCell)
-          }
-
-          if (!this.assets.hasOwnProperty(currCell) && currCell) {
-            var converted = this.convertGid(currCell).gid;
-            if (this.assets.hasOwnProperty(converted)) {
-              cellData.gid = converted;
-            } else {
-              cellData.gid = 0;
+            var cellData = {
+              gid:currCell,
+              asset:this.getAssetByGid(currCell)
             }
-          }
 
-          currLayer[i].push(cellData);
+            if (!this.assets.hasOwnProperty(currCell) && currCell) {
+              var converted = this.convertGid(currCell).gid;
+              if (this.assets.hasOwnProperty(converted)) {
+                cellData.gid = converted;
+              } else {
+                cellData.gid = 0;
+              }
+            }
+
+            currLayer[i].push(cellData);
+          }
         }
       }
 
-      if (layer.height + layer.width == 0 && layer.type == "objectgroup") {
+      if (layer.type == "objectgroup") {
         this.level_map.layers[layerIndex].type = "objectgroup";
         for (i = 0; i < layer.objects.length; i++) {
           var obj = layer.objects[i];
+          console.log("Adding object to layer: "+layer.name);
+          console.log(obj);
           var obj_data = {
             x:obj.x,
             y:obj.y,
             gid:obj.gid
+          };
+          if (obj.polygon) {
+            obj_data.polygon = this.convertPolygon(obj.polygon);
           }
           currLayer.push(obj_data);
         }
@@ -129,5 +136,13 @@ TiledReader.prototype = {
       vflip:vflip,
       dflip:dflip
     };
+  },
+  convertPolygon:function(pg) {
+    var poly_array = [];
+    for (point in pg) {
+      var point_array = [point.x, point.y];
+      poly_array.push(point_array);
+    }
+    return poly_array;
   }
 }

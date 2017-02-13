@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="44" height="7" tilewidth="70" tileheight="70" backgroundcolor="#b2e7ff" nextobjectid="25">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="44" height="7" tilewidth="70" tileheight="70" backgroundcolor="#b2e7ff" nextobjectid="27">
  <tileset firstgid="1" name="tiles" tilewidth="70" tileheight="146" tilecount="15" columns="0">
   <tile id="10">
    <image width="70" height="70" source="../img/platformer_art_pack/Base pack/Tiles/boxItem.png"/>
@@ -103,5 +103,10 @@
    <property name="texture" value="/Player/p2_stand.png"/>
   </properties>
   <object id="12" gid="173" x="313" y="329" width="70" height="94"/>
+ </objectgroup>
+ <objectgroup name="body_player">
+  <object id="26" x="343.75" y="236.25">
+   <polygon points="0,0 -15.5,7.5 -26.75,26 -26,45.5 -15.75,59.25 -15.5,72.75 -5,82.5 -3.75,90.75 11.5,91.5 12.5,83 23.5,74.25 23.5,60.75 36,46.25 37.5,24.5 26,7.5 10.75,1"/>
+  </object>
  </objectgroup>
 </map>
