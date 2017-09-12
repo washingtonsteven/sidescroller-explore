@@ -7,6 +7,8 @@ If you want to run this (for whatever reason, this whole repo is just me messing
 
 Also be sure to check out the phaser submodule before running anything: `git submodule update --init --recursive`
 
+_Note 09/12/2017_ So this turned out weird. The latest commit that's actually kind of a platformer still is: [b546167e](https://github.com/washingtonsteven/sidescroller-explore/commit/b546167ed2d741594b38bb4dcee2fdd02ffdb4d7)
+
 ## Notes
 (This section is mostly for me to take notes on ideas, thoughts, or just tricky things about Phaser that I should remember in the future)
 
