@@ -48,7 +48,7 @@ var hellophaser = {
       this.scale.pageAlignHorizontally = true;
       this.scale.pageAlignVertically = true;
       this.scale.refresh();
-      game.physics.startSystem(Phaser.Physics.P2JS);
+      game.physics.startSystem(Phaser.Physics.ARCADE);
       //game.world.enableBody = true;
       this.game.world.setBounds(0, 0, 3500, 490);
 
@@ -74,6 +74,20 @@ var hellophaser = {
         });
       }
 
+      if (this.collision) {
+        for (var c in this.collision.children) {
+          var cc = this.collision.children[c].body;
+          cc.collideWorldBounds = true;
+          cc.checkCollision = {
+            up:true,
+            down:false,
+            left:false,
+            right:false
+          }
+
+        }
+      }
+
       // if (this.collision) {
       //   this.playerSprite.body.collides(this.collision, function(){}, this);
       // }
@@ -90,66 +104,79 @@ var hellophaser = {
        this.lastFrameTime = currTime;
 
       if (this.cursor.left.isDown) {
-        this.playerSprite.body.rotation -= degtorad(270 * deltaTime);
+        this.playerSprite.body.velocity.x = -400;
       } else if (this.cursor.right.isDown) {
-        this.playerSprite.body.rotation += degtorad(270 * deltaTime);
+        this.playerSprite.body.velocity.x = 400;
+      } else {
+        this.playerSprite.body.velocity.x = 0;
       }
 
-      if (this.cursor.up.isDown) {
-        this.playerSprite.body.thrust(400);
-      } else if (this.cursor.down.isDown) {
-        this.playerSprite.body.thrust(-400);
-      }
+      // if (this.cursor.up.isDown) {
+      //   this.playerSprite.body.thrust(400);
+      // } else if (this.cursor.down.isDown) {
+      //   this.playerSprite.body.thrust(-400);
+      // }
 
       if (this.playerSprite) {
+        this.playerSprite.collideWorldBounds = true;
 
-        // if (this.collision) {
-        //   game.physics.arcade.collide(this.playerSprite, this.collision);
-        // }
-        //
-        // if (this.coins) {
-        //   game.physics.arcade.overlap(this.playerSprite, this.coins, this.takeCoin, null, this);
-        // }
-        //
-        // if (this.enemies) {
-        //   game.physics.arcade.overlap(this.playerSprite, this.enemies, this.restart, null, this);
-        //
-        //   if (this.collision) {
-        //     game.physics.arcade.collide(this.enemies, this.collision);
-        //   }
-        // }
+        if (this.collision) {
+          // this.collision.body.collideWorldBounds = true;
+          // this.collision.body.checkCollision.up = true;
+          // this.collision.body.checkCollision.down = false;
+          // this.collision.body.checkCollision.left = false;
+          // this.collision.body.checkCollision.right = false;
+
+          game.physics.arcade.collide(this.playerSprite, this.collision);
+        }
+
+        if (this.collision_solid) {
+          game.physics.arcade.collide(this.playerSprite, this.collision_solid);
+        }
+        
+        if (this.coins) {
+          game.physics.arcade.overlap(this.playerSprite, this.coins, this.takeCoin, null, this);
+        }
+        
+        if (this.enemies) {
+          game.physics.arcade.overlap(this.playerSprite, this.enemies, this.restart, null, this);
+        
+          if (this.collision) {
+            game.physics.arcade.collide(this.enemies, this.collision);
+          }
+        }
       }
 
       // game.physics.arcade.collide(this.player, this.walls);
       // game.physics.arcade.overlap(this.player, this.coins, this.takeCoin, null, this);
       // game.physics.arcade.overlap(this.player, this.enemies, this.restart, null, this);
 
-      // if (this.cursor.up.isDown && (this.playerSprite.body.onFloor() || this.playerSprite.body.touching.down)) {
-      //   this.playerSprite.body.velocity.y = -600;
-      // }
+      if (this.cursor.up.isDown && (this.playerSprite.body.onFloor() || this.playerSprite.body.touching.down)) {
+        this.playerSprite.body.velocity.y = -600;
+      }
     },
     render:function() {
-      var game = this.game;
-      if (this.player) {
-        this.player.forEachAlive(function(member){
-          game.debug.body(member, 'rgba(0,255,0,0.4)');
-        }, this);
-      }
-      if (this.collision) {
-        this.collision.forEachAlive(function(member){
-          game.debug.body(member,'rgba(0,0,255,0.4)');
-        }, this);
-      }
-      if (this.enemies) {
-        this.enemies.forEachAlive(function(member){
-          game.debug.body(member,'rgba(255,0,0,0.4)');
-        }, this);
-      }
-      if (this.coins) {
-        this.coins.forEachAlive(function(member){
-          game.debug.body(member,'rgba(255,0,255,0.4)');
-        }, this);
-      }
+      // var game = this.game;
+      // if (this.player) {
+      //   this.player.forEachAlive(function(member){
+      //     game.debug.body(member, 'rgba(0,255,0,0.4)');
+      //   }, this);
+      // }
+      // if (this.collision) {
+      //   this.collision.forEachAlive(function(member){
+      //     game.debug.body(member,'rgba(0,0,255,0.4)');
+      //   }, this);
+      // }
+      // if (this.enemies) {
+      //   this.enemies.forEachAlive(function(member){
+      //     game.debug.body(member,'rgba(255,0,0,0.4)');
+      //   }, this);
+      // }
+      // if (this.coins) {
+      //   this.coins.forEachAlive(function(member){
+      //     game.debug.body(member,'rgba(255,0,255,0.4)');
+      //   }, this);
+      // }
     },
     takeCoin:function(player, coin) {
       coin.kill();

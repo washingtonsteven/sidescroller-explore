@@ -30,7 +30,7 @@ TiledDisplay.prototype = {
         var cell = layer.map[i][j];
         if (!cell.gid) continue; //also skips all those zeroes;
         var sprite = this.state.game.add.sprite(30+tileDims.width*j, 30+tileDims.height*i, cell.gid+"");
-        game.physics.p2.enable(sprite, true);
+        game.physics.arcade.enable(sprite, true);
         sprite.anchor.setTo(0.5,0.5);
         if (cell.asset.rotate) {
           sprite.rotation = degtorad(cell.asset.rotate);
@@ -71,7 +71,7 @@ TiledDisplay.prototype = {
         }
       } else {
         var sprite = this.state.game.add.sprite(sprite_obj.x-30, sprite_obj.y-30, sprite_obj.gid+"");
-        game.physics.p2.enable(sprite, true);
+        game.physics.arcade.enable(sprite, true);
         sprite.anchor.setTo(0.5,0.5);
         if (!this.state[layer.name]) {
           this.state[layer.name] = this.state.add.group();
