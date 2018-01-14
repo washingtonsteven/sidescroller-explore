@@ -23,7 +23,6 @@ TiledDisplay.prototype = {
     var map = layer.map;
     var tileDims = {width:this.tiledReader.level_data.tilewidth, height:this.tiledReader.level_data.tileheight};
 
-    console.log("Display layer: "+layer.name);
 
     for (var i = 0; i < layer.map.length; i++) {
       for (var j = 0; j < layer.map[i].length; j++) {
@@ -42,8 +41,6 @@ TiledDisplay.prototype = {
         }
         this.state[layer.name].add(sprite);
         if (layer.properties && layer.properties.collision) sprite.body.immovable = true;
-
-        console.log("\tadding sprite: "+cell.gid);
       }
     }
   },
@@ -51,8 +48,6 @@ TiledDisplay.prototype = {
     var map = layer.map;
     var game = this.state.game;
     var tileDims = {width:this.tiledReader.level_data.tilewidth, height:this.tiledReader.level_data.tileheight};
-
-    console.log("Display layer: "+layer.name);
 
     for (var i = 0; i < map.length; i++) {
       var sprite_obj = map[i];
@@ -79,8 +74,6 @@ TiledDisplay.prototype = {
           if (!this.state.tiled_groups[layer.name]) this.state.tiled_groups[layer.name] = this.state[layer.name];
         }
         this.state[layer.name].add(sprite);
-
-        console.log("\tadding object: "+sprite_obj.gid+" ("+sprite_obj.x+", "+sprite_obj.y+")");
       }
     }
   }

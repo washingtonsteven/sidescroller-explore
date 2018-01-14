@@ -56,10 +56,6 @@ TiledReader.prototype = {
       this.level_map.layers[layerIndex].properties = layer.properties;
       var currLayer = this.level_map.layers[layerIndex].map;
 
-      console.log(
-        "Reading level: "+layer.name
-      );
-
       if (layer.type == "tilelayer") {
         for (i = 0; i < layer.height; i++) {
           for (j = 0; j < layer.width; j++) {
@@ -90,8 +86,6 @@ TiledReader.prototype = {
         this.level_map.layers[layerIndex].type = "objectgroup";
         for (i = 0; i < layer.objects.length; i++) {
           var obj = layer.objects[i];
-          console.log("Adding object to layer: "+layer.name);
-          console.log(obj);
           var obj_data = {
             x:obj.x,
             y:obj.y,
